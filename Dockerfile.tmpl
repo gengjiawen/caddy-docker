@@ -29,7 +29,7 @@ RUN git checkout $DIST_COMMIT
 RUN cp config/Caddyfile /Caddyfile
 RUN cp welcome/index.html /index.html
 
-FROM {{ include "base" }}
+{{ include "base" | strings.TrimSpace }}
 
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs
